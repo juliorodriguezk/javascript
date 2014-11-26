@@ -1,0 +1,3 @@
+/*
+Pruebas iniciales javascript
+*/
