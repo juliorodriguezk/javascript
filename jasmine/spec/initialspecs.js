@@ -1,3 +1,5 @@
-describe("Pruebas iniciales de javascript", function() {
-	
+describe("Ajax request javascript module javascript", function() {
+	it("", function() {
+		
+	});
 });
