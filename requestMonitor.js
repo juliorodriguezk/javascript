@@ -7,8 +7,10 @@ $MC = window.$MC ||	{};
 	/**
 	 * [RequestMonitor description]
 	 */
-	moduleContext.RequestMonitor = function(){
-		this.startMonitoringDate = new Date().getTime();
+	moduleContext.RequestMonitor = function(appId, userId){
+		this.startMonitoringDate = new Date().getTime();		
+		this.appId = appId || null;
+		this.userId = userId || null;
 		this.performedRequests = 0;
 		this.successRequests = 0;
 		this.errorRequests = 0;		
@@ -27,17 +29,18 @@ $MC = window.$MC ||	{};
 	 */
 	proto.SAVE_INTERVAL = 0;
 	/**
-	 * [reset description]
+	 * [clean description]
 	 * @return {[type]} [description]
 	 */
-	proto.reset = function(){
-		this.startMonitoringDate = new Date().getTime();		
-		this.performedRequests = 0;
-		this.successRequests = 0;
-		this.errorRequests = 0;		
-		this.timedOutRequests = 0;	
-		this.currentRequests = 0;
-		this.requestsData = {};
+	proto.clean = function(){
+		var key, subKey;
+        for(key in this.requestsData){
+            for (subKey in key){
+            	delete this.requestsData.key.subKey;
+            }
+            delete key;
+        }
+        this.requestsData = {};	
 	};
 	/**
 	 * [startProcess description]
