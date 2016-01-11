@@ -75,3 +75,6 @@ https://coderwall.com/p/6e7rea/consider-lookup-tables-instead-of-switch-or-if-el
 
 ##  Activar y desactivar css usando querySelector && disabled
 
+#  ECMAScript6
+
+## 
