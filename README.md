@@ -44,3 +44,17 @@ javascript
 
 ## Crear una instancia en el código
     var instancia = new namespace.Nombre_de_la_clase_para_llamar(parametrosInic);
+    
+## Comprobar si una propiedad pertenece a un objeto
+    /* Comprobar en el propio objeto NO en los prototypes heredados*/
+    var pertenece = Objeto.hasOwnProperty('propiedad_a_comprobar');
+    
+    /* Comprobar en el propio objeto O en los prototypes heredados*/
+    var pertenece = 'propiedad_a_comprobar' in Objeto;
+    
+    /*En el siguiente caso:/
+    var Objeto = {'nombre': 'Julio'};
+        Objeto.hasOwnProperty('nombre'); //true
+        'nombre' in Objeto: //true
+        Objeto.hasOwnProperty('valueOf'); //false
+        'valueOf' in Objeto: //true    
