@@ -72,3 +72,6 @@ javascript
 Más info en 
 http://www.nikola-breznjak.com/blog/javascript/converting-a-javascript-switch-statement-into-a-function-lookup/
 https://coderwall.com/p/6e7rea/consider-lookup-tables-instead-of-switch-or-if-else
+
+##  Activar y desactivar css usando querySelector && disabled
+
