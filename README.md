@@ -53,8 +53,22 @@ javascript
     var pertenece = 'propiedad_a_comprobar' in Objeto;
     
     /*En el siguiente caso:/
-    var Objeto = {'nombre': 'Julio'};
+        var Objeto = {'nombre': 'Julio'};
         Objeto.hasOwnProperty('nombre'); //true
         'nombre' in Objeto: //true
         Objeto.hasOwnProperty('valueOf'); //false
-        'valueOf' in Objeto: //true    
+        'valueOf' in Objeto: //true
+        
+##  Alternativa OO al switch o if else con lógica asociada
+        var asociaciones = {
+            "funcionA": hazAlgo,
+            "funcionB": hazOtraCosa,
+            "funcionC": hazOtraCosa,
+            "defecto" : hazPorDefecto,
+        };
+
+        (asociaciones.hasOwnProperty( valor ) && typeof asociaciones [ valor ] === "function")? asociaciones[ valor ](): asociaciones[ "defecto" ]();
+
+Más info en 
+http://www.nikola-breznjak.com/blog/javascript/converting-a-javascript-switch-statement-into-a-function-lookup/
+https://coderwall.com/p/6e7rea/consider-lookup-tables-instead-of-switch-or-if-else
