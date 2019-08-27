@@ -1,0 +1,6 @@
+_currentText
+_fontFace
+_fontSize
+writeLine
+removeLine
+removeAllLines

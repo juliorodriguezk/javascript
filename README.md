@@ -1,5 +1,8 @@
 javascript
 ==========
+# Conceptos generales
+
+
 #  ECMAScript6
 
 ## Constantes
@@ -76,4 +79,4 @@ Si declaramos una constante y le asignamos un valor objeto los valores del objet
     import {valor} as miLib from "lib/miLibreria"
     diParametro(miLib.miValor); // "pasa un parámetro válido"
 
-#  ECMAScript6
+
