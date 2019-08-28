@@ -3,7 +3,7 @@ $COMPONENTFRAMEWORK.component = (function() {
 	return function(params) {
 		'use strict';
 		var that = Object.create(null), //Initialize object to empty
-			_htmlElement = null,
+			_htmlElement = params.element,
 			_position = 'absolute',
 			_x = 0,
 			_y = 0,
@@ -50,12 +50,11 @@ $COMPONENTFRAMEWORK.component = (function() {
 			if(!params || !params.element) {
 				throw new Error("component :: initialization :: HTML element is mandatory.");
 			}
-			_htmlElement = params.element;
 			if(params.position) {
 				_setPosition(params.position);
 			}
 			if(params.units) {
-				_units = params.units;
+				_setUnits(params.units);
 			}
 			if(params.x) {
 				_setX(params.x);
@@ -89,7 +88,7 @@ $COMPONENTFRAMEWORK.component = (function() {
 			}
 		};
 
-		that.setSize = function(x, y) {
+		that.setSize = function(width, height) {
 			if(width != null && typeof width === 'number') {
 				_setWidth(width);
 			}
@@ -113,7 +112,6 @@ $COMPONENTFRAMEWORK.component = (function() {
 		that.hide = function() {
 			_htmlElement.classList.add("hide");
 		};
-
 		//RETURN PUBLICK OBJECT
 		return that;
 	}
