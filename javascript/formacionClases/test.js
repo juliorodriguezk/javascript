@@ -1,7 +1,13 @@
 function testFramework() {
-	var myComponent = $COMPONENTFRAMEWORK.log({element : document.getElementById("test")});
-	myComponent.setSize(1000, 200);
-	myComponent.changeFont(20);
-	myComponent.setColor('grey');
-	myComponent.error("AAAAAAAAAAA AAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAA AAAAAAA AAAAAAAAAAAAA");
+	var myLogBox = $COMPONENTFRAMEWORK.log({
+		element : document.getElementById("logConsole"),
+		color : 'grey',
+		height : 200,
+		opacity : 0.8
+	});
+	myLogBox.setSize(100, null, '%');
+	myLogBox.error("Ha habido un error");
+	myLogBox.warn("Esto es un warn !");
+	myLogBox.log("Esto es un log normal");
+	myLogBox.emphasis("Esto es un texto destacado");
 }

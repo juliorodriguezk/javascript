@@ -3,7 +3,7 @@ $COMPONENTFRAMEWORK.log = (function() {
 	return function(params) {
 		'use strict';
 		var _htmlElement = params.element,
-			_parentObj = this.textArea(params),
+			_parentObj = $COMPONENTFRAMEWORK.textArea(params),
 			that = Object.create(_parentObj),
 			_logDecorator = "";
 
@@ -20,6 +20,10 @@ $COMPONENTFRAMEWORK.log = (function() {
 		}
 
 		function _init(params) {
+			if(_htmlElement) {
+				_htmlElement.classList.add("log-console");
+
+			}
 		}
 
 		//INITIALIZE OBJECT
@@ -36,7 +40,7 @@ $COMPONENTFRAMEWORK.log = (function() {
 		that.error = function(text) {
 			_writeLog(text, 'error');
 		};
-		that.warn = function() {
+		that.warn = function(text) {
 			_writeLog(text, 'warn');
 		};
 		//RETURN PUBLICK OBJECT

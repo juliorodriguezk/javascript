@@ -3,7 +3,7 @@ $COMPONENTFRAMEWORK.textArea = (function() {
 	return function(params) {
 		'use strict';
 		var _htmlElement = params.element,
-			_parentObj = this.textComponent(params),
+			_parentObj = $COMPONENTFRAMEWORK.textComponent(params),
 			that = Object.create(_parentObj),
 			_lastLineRegEx = new RegExp('.*<BR/>$', 'g');
 

@@ -3,7 +3,7 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 	return function(params) {
 		'use strict';
 		var _htmlElement = params.element,
-			_parentObj = this.component(params),
+			_parentObj = $COMPONENTFRAMEWORK.component(params),
 			that = Object.create(_parentObj), //Initialize object to empty
 			_fontUnits = 'px',
 			_fontSize,
