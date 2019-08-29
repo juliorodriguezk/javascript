@@ -7,8 +7,7 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 			that = Object.create(_parentObj), //Initialize object to empty
 			_fontUnits = 'px',
 			_fontSize,
-			_fontColor,
-			_fontFace;
+			_fontColor;
 
 		//START PRIVATE FUNCTIONS
 		function _setFontSize(value) {
@@ -55,6 +54,18 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 		};
 		that.removeText = function() {
 			_htmlElement.innerHTML = "";
+		};
+		that.destroy = function() {
+			for(var prop in this) {
+				delete this.prop;
+			}
+			_htmlElement = undefined;
+			that = undefined;
+			_fontUnits = undefined;
+			_fontSize = undefined;
+			_fontColor = undefined;
+			_parentObj.destroy();
+			_parentObj = undefined;
 		};
 		//RETURN PUBLICK OBJECT
 		return that;

@@ -1,7 +1,20 @@
+/*
+COMPONENT CLASSES
+*/
 .hide {
     display: none;
 }
 
+/*
+FOCUSABLE_COMPONENT CLASES
+*/
+
+.focused {
+}
+
+/**
+LOG CLASSES
+ */
 .error {
     font-weight: bold;
     color: red;

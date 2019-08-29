@@ -4,7 +4,7 @@ $COMPONENTFRAMEWORK.component = (function() {
 		'use strict';
 		var that = Object.create(null), //Initialize object to empty
 			_htmlElement = params.element,
-			_position = 'absolute',
+			_position = 'relative',
 			_x = 0,
 			_y = 0,
 			_width = 0,
@@ -15,7 +15,10 @@ $COMPONENTFRAMEWORK.component = (function() {
 
 		//START PRIVATE FUNCTIONS
 		function _setPosition(value) {
-			_position = params.position;
+			if(value) {
+				_position = value;
+			}
+			_htmlElement.style.position = _position;
 		}
 
 		function _setX(value, units) {
@@ -60,9 +63,9 @@ $COMPONENTFRAMEWORK.component = (function() {
 			if(!params || !params.element) {
 				throw new Error("component :: initialization :: HTML element is mandatory.");
 			}
-			if(params.position) {
-				_setPosition(params.position);
-			}
+
+			_setPosition(params.position);
+
 			if(params.units) {
 				_setUnits(params.units);
 			}
@@ -101,6 +104,17 @@ $COMPONENTFRAMEWORK.component = (function() {
 			}
 		};
 
+		that.getComponentData = function() {
+			return {
+				x : _x,
+				y : _y,
+				position : _position,
+				width : _width,
+				height : _height,
+				color : _color
+			};
+		};
+
 		that.setSize = function(width, height, units) {
 			if(width != null && typeof width === 'number') {
 				_setWidth(width, units);
@@ -124,6 +138,26 @@ $COMPONENTFRAMEWORK.component = (function() {
 
 		that.hide = function() {
 			_htmlElement.classList.add("hide");
+		};
+
+		that.destroy = function() {
+			for(var prop in this) {
+				delete this.prop;
+			}
+			that = undefined;
+			_htmlElement = undefined;
+			_position = undefined;
+			_x = undefined;
+			_y = undefined;
+			_width = undefined;
+			_height = undefined;
+			_color = undefined;
+			_opacity = undefined;
+			_units = undefined;
+			if(_htmlElement) {
+				_htmlElement.remove();
+			}
+			return undefined;
 		};
 		//RETURN PUBLICK OBJECT
 		return that;
