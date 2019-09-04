@@ -2,7 +2,8 @@ var $COMPONENTFRAMEWORK = $COMPONENTFRAMEWORK || {};
 $COMPONENTFRAMEWORK.focusableComponent = (function() {
 	return function(params) {
 		'use strict';
-		var _htmlElement = params.element,
+		var _name = 'focusableComponent',
+			_htmlElement,
 			_parentObj = $COMPONENTFRAMEWORK.textComponent(params),
 			that = Object.create(_parentObj), //Initialize object to empty
 			_onBlurAction = function() {
@@ -37,11 +38,16 @@ $COMPONENTFRAMEWORK.focusableComponent = (function() {
 		}
 
 		function _init(params) {
-			if(params.focusAction) {
-				_setFocusAction(params.focusAction);
-			}
-			if(params.blurAction) {
-				_setBlurAction(params.blurAction);
+			if(params) {
+				if(params.element) {
+					_htmlElement = params.element;
+				}
+				if(params.focusAction) {
+					_setFocusAction(params.focusAction);
+				}
+				if(params.blurAction) {
+					_setBlurAction(params.blurAction);
+				}
 			}
 		}
 
@@ -49,6 +55,10 @@ $COMPONENTFRAMEWORK.focusableComponent = (function() {
 		_init(params);
 
 		//ADD PUBLIC FUNCTIONS
+
+		that.getName = function() {
+			return _name;
+		};
 
 		that.setBlurAction = function(action) {
 			_setBlurAction(action);

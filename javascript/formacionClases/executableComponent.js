@@ -2,7 +2,8 @@ var $COMPONENTFRAMEWORK = $COMPONENTFRAMEWORK || {};
 $COMPONENTFRAMEWORK.executableComponent = (function() {
 	return function(params) {
 		'use strict';
-		var _htmlElement = params.element,
+		var _name = 'executableComponent',
+			_htmlElement,
 			_parentObj = $COMPONENTFRAMEWORK.focusableComponent(params),
 			that = Object.create(_parentObj), //Initialize object to empty
 			_executableAction = function() {
@@ -16,8 +17,14 @@ $COMPONENTFRAMEWORK.executableComponent = (function() {
 		}
 
 		function _init(params) {
-			if(params.executeAction) {
-				_setExecutableAction(params.executeAction);
+			if(params) {
+				if(params.element) {
+					_htmlElement = params.element
+				}
+
+				if(params.executeAction) {
+					_setExecutableAction(params.executeAction);
+				}
 			}
 		}
 
@@ -25,6 +32,10 @@ $COMPONENTFRAMEWORK.executableComponent = (function() {
 		_init(params);
 
 		//ADD PUBLIC FUNCTIONS
+
+		that.getName = function() {
+			return _name;
+		};
 
 		that.execute = function() {
 			return _executableAction();

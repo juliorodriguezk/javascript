@@ -2,7 +2,8 @@ var $COMPONENTFRAMEWORK = $COMPONENTFRAMEWORK || {};
 $COMPONENTFRAMEWORK.movableComponent = (function() {
 	return function(params) {
 		'use strict';
-		var _htmlElement = params.element,
+		var _name = 'movableComponent',
+			_htmlElement,
 			_parentObj = $COMPONENTFRAMEWORK.executableComponent(params),
 			that = Object.create(_parentObj), //Initialize object to empty
 			_stepSize = 1,
@@ -75,11 +76,16 @@ $COMPONENTFRAMEWORK.movableComponent = (function() {
 		}
 
 		function _init(params) {
-			if(params.stepSize) {
-				_setStepSize(params.stepSize);
-			}
-			if(params.moveAction) {
-				_setMoveAction(params.moveAction);
+			if(params) {
+				if(params.element) {
+					_htmlElement = params.element;
+				}
+				if(params.stepSize) {
+					_setStepSize(params.stepSize);
+				}
+				if(params.moveAction) {
+					_setMoveAction(params.moveAction);
+				}
 			}
 		}
 
@@ -87,6 +93,11 @@ $COMPONENTFRAMEWORK.movableComponent = (function() {
 		_init(params);
 
 		//ADD PUBLIC FUNCTIONS
+
+		that.getName = function() {
+			return _name;
+		};
+
 		that.moveX = function(leftDirection) {
 			_moveX(leftDirection, true);
 		};

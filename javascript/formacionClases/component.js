@@ -2,8 +2,9 @@ var $COMPONENTFRAMEWORK = $COMPONENTFRAMEWORK || {};
 $COMPONENTFRAMEWORK.component = (function() {
 	return function(params) {
 		'use strict';
-		var that = Object.create(null), //Initialize object to empty
-			_htmlElement = params.element,
+		var _name = 'component',
+			that = Object.create(null), //Initialize object to empty
+			_htmlElement,
 			_position = 'relative',
 			_x = 0,
 			_y = 0,
@@ -62,6 +63,8 @@ $COMPONENTFRAMEWORK.component = (function() {
 		function _init(params) {
 			if(!params || !params.element) {
 				throw new Error("component :: initialization :: HTML element is mandatory.");
+			} else {
+				_htmlElement = params.element;
 			}
 
 			_setPosition(params.position);
@@ -94,6 +97,10 @@ $COMPONENTFRAMEWORK.component = (function() {
 		_init(params);
 
 		//ADD PUBLIC FUNCTIONS
+
+		that.getName = function() {
+			return _name;
+		};
 
 		that.setPosition = function(xPos, yPos, units) {
 			if(xPos != null && typeof xPos === 'number') {

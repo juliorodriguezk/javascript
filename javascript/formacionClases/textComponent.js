@@ -7,7 +7,8 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 			that = Object.create(_parentObj), //Initialize object to empty
 			_fontUnits = 'px',
 			_fontSize,
-			_fontColor;
+			_fontColor,
+			_name = 'textComponent';
 
 		//START PRIVATE FUNCTIONS
 		function _setFontSize(value) {
@@ -25,14 +26,19 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 		}
 
 		function _init(params) {
-			if(params.fontSize) {
-				_setFontSize(params.fontSize);
-			}
-			if(params.fontColor) {
-				_setFontColor(params.fontColor);
-			}
-			if(params.fontUnits) {
-				_setFontUnits(params.fontUnits);
+			if(params) {
+				if(params.element) {
+					_htmlElement = params.element;
+				}
+				if(params.fontSize) {
+					_setFontSize(params.fontSize);
+				}
+				if(params.fontColor) {
+					_setFontColor(params.fontColor);
+				}
+				if(params.fontUnits) {
+					_setFontUnits(params.fontUnits);
+				}
 			}
 		}
 
@@ -40,6 +46,10 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 		_init(params);
 
 		//ADD PUBLIC FUNCTIONS
+
+		that.getName = function() {
+			return _name;
+		};
 
 		that.changeFont = function(size, color) {
 			if(typeof size === 'number') {

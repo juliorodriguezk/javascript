@@ -13,16 +13,17 @@ function testFramework() {
 	var myLogBox = $COMPONENTFRAMEWORK.textComponent({
 		element : document.getElementById("logConsole"),
 	});
-	var myArray = [];
-	for(var i = 0; i < 10000; i++) {
-		var newComp = $COMPONENTFRAMEWORK.textComponent({
-			element : document.getElementById("logConsole"),
-		});
-		myArray.push(newComp);
-	}
-	var cont = 0;
-	setInterval(function() {
-		myArray[cont] = myArray[cont].destroy();
-		cont += 1;
-	}, 100);
+	myLogBox.getName();
+//	var myArray = [];
+//	for(var i = 0; i < 10000; i++) {
+//		var newComp = $COMPONENTFRAMEWORK.textComponent({
+//			element : document.getElementById("logConsole"),
+//		});
+//		myArray.push(newComp);
+//	}
+//	var cont = 0;
+//	setInterval(function() {
+//		myArray[cont] = myArray[cont].destroy();
+//		cont += 1;
+//	}, 100);
 }
