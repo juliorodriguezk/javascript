@@ -139,6 +139,12 @@ $COMPONENTFRAMEWORK.component = (function() {
 			}
 		};
 
+		that.setOpacity = function(opacity) {
+			if(opacity != null && typeof opacity === 'number') {
+				_setOpacity(value);
+			}
+		};
+
 		that.show = function() {
 			_htmlElement.classList.remove("hide");
 		};
