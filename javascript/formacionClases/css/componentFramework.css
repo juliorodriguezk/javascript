@@ -6,6 +6,19 @@ COMPONENT CLASSES
 }
 
 /*
+TEXT COMPONENT CLASSES
+*/
+.textComponent{
+    overflow: hidden;
+}
+.textComponent div.center {
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+}
+
+/*
 FOCUSABLE_COMPONENT CLASES
 */
 
@@ -29,4 +42,12 @@ LOG CLASSES
 }
 
 .log-console {
+}
+
+/*
+BALL CLASES
+*/
+.ball {
+    border-radius: 50%;
+    border: 1px solid black;
 }

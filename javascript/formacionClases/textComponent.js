@@ -8,6 +8,8 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 			_fontUnits = 'px',
 			_fontSize,
 			_fontColor,
+			_text = '',
+			_center = false,
 			_name = 'textComponent';
 
 		//START PRIVATE FUNCTIONS
@@ -25,12 +27,24 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 			_fontUnits = value;
 		}
 
+		function _setText(value) {
+			_text = value;
+			var textContainer = document.createElement("div");
+			if(_center) {
+				textContainer.classList.add("center");
+			}
+			textContainer.innerHTML = _text;
+			_htmlElement.innerHTML = '';
+			_htmlElement.appendChild(textContainer);
+		}
+
 		function _init(params) {
 			if(params) {
 				if(params.element) {
 					_htmlElement = params.element;
+					_htmlElement.classList.add("textComponent");
 				}
-				if(params.fontSize) {
+				if(params.fontSize != null) {
 					_setFontSize(params.fontSize);
 				}
 				if(params.fontColor) {
@@ -38,6 +52,12 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 				}
 				if(params.fontUnits) {
 					_setFontUnits(params.fontUnits);
+				}
+				if(params.center) {
+					_center = params.center;
+				}
+				if(params.text) {
+					_setText(params.text);
 				}
 			}
 		}
@@ -60,7 +80,9 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 			}
 		};
 		that.setText = function(text) {
-			_htmlElement.innerHTML = text;
+			if(text != null) {
+				_setText(text);
+			}
 		};
 		that.removeText = function() {
 			_htmlElement.innerHTML = "";
@@ -77,7 +99,7 @@ $COMPONENTFRAMEWORK.textComponent = (function() {
 			_parentObj.destroy();
 			_parentObj = undefined;
 		};
-		//RETURN PUBLICK OBJECT
+		//RETURN PUBLIC OBJECT
 		return that;
 	}
 }());

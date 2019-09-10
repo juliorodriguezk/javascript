@@ -10,10 +10,11 @@ function testFramework() {
 	// myLogBox.warn("Esto es un warn !");
 	// myLogBox.log("Esto es un log normal");
 	// myLogBox.emphasis("Esto es un texto destacado");
-	var myLogBox = $COMPONENTFRAMEWORK.textComponent({
-		element : document.getElementById("logConsole"),
-	});
-	myLogBox.getName();
+	// var myLogBox = $COMPONENTFRAMEWORK.textComponent({
+	// 	element : document.getElementById("logConsole"),
+	// });
+	// myLogBox.getName();
+	// console.log("TEST");
 //	var myArray = [];
 //	for(var i = 0; i < 10000; i++) {
 //		var newComp = $COMPONENTFRAMEWORK.textComponent({
@@ -26,4 +27,15 @@ function testFramework() {
 //		myArray[cont] = myArray[cont].destroy();
 //		cont += 1;
 //	}, 100);
+	var myYellowBall = $COMPONENTFRAMEWORK.log({
+		element : document.getElementById("test"),
+		width : 100,
+		height : 100,
+		text : "hola"
+	});
+	myYellowBall.log("ESTA ES LA PRIMERA FRASE QUE QUIERO METER");
+	myYellowBall.warn("ESTA ES LA segunda FRASE QUE QUIERO METER");
+	myYellowBall.error("ESTA ES LA tercera FRASE QUE QUIERO METER");
+	myYellowBall.error("ESTA LA BORRO QUE NO APAREZCA");
+	myYellowBall.removeLine();
 }

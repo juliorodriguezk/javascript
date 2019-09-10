@@ -33,6 +33,9 @@ $COMPONENTFRAMEWORK.textArea = (function() {
 			}
 		};
 		that.removeLine = function() {
+			var exist =_lastLineRegEx.test(_htmlElement.innerHTML);
+
+			debugger;
 			var tmpContent = _htmlElement.innerHTML.replace(_lastLineRegEx, "");
 			_htmlElement.innerHTML = tmpContent;
 		};

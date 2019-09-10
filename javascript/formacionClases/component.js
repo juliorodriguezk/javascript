@@ -5,40 +5,47 @@ $COMPONENTFRAMEWORK.component = (function() {
 		var _name = 'component',
 			that = Object.create(null), //Initialize object to empty
 			_htmlElement,
-			_position = 'relative',
+			_position,
 			_x = 0,
 			_y = 0,
 			_width = 0,
 			_height = 0,
-			_color = 0,
-			_opacity = 1,
+			_color,
+			_opacity,
+			_background,
 			_units = 'px';
 
 		//START PRIVATE FUNCTIONS
 		function _setPosition(value) {
-			if(value) {
-				_position = value;
-			}
+			_position = value;
 			_htmlElement.style.position = _position;
 		}
 
 		function _setX(value, units) {
-			_x = value;
+			if(value != null) {
+				_x = value;
+			}
 			_htmlElement.style.left = _x + (units || _units);
 		}
 
 		function _setY(value, units) {
-			_y = value;
+			if(value != null) {
+				_y = value;
+			}
 			_htmlElement.style.top = _y + (units || _units);
 		}
 
 		function _setWidth(value, units) {
-			_width = value;
+			if(value != null) {
+				_width = value;
+			}
 			_htmlElement.style.width = _width + (units || _units);
 		}
 
 		function _setHeight(value, units) {
-			_height = value;
+			if(value != null) {
+				_height = value;
+			}
 			_htmlElement.style.height = _height + (units || _units);
 		}
 
@@ -60,35 +67,36 @@ $COMPONENTFRAMEWORK.component = (function() {
 			}
 		}
 
+		function _setBackground(value) {
+			_background = value;
+			_htmlElement.style.backgoundImage = "url('" + _background();
+
+		}
+
 		function _init(params) {
 			if(!params || !params.element) {
 				throw new Error("component :: initialization :: HTML element is mandatory.");
 			} else {
 				_htmlElement = params.element;
 			}
-
-			_setPosition(params.position);
-
-			if(params.units) {
+			_setX(params.x);
+			_setY(params.y);
+			_setWidth(params.width);
+			_setHeight(params.height);
+			if(params.opacity != null) {
+				_setOpacity(params.opacity);
+			}
+			if(params.position != null) {
+				_setPosition(params.position);
+			}
+			if(params.units != null) {
 				_setUnits(params.units);
 			}
-			if(params.x) {
-				_setX(params.x);
-			}
-			if(params.y) {
-				_setY(params.y);
-			}
-			if(params.width) {
-				_setWidth(params.width);
-			}
-			if(params.height) {
-				_setHeight(params.height);
-			}
-			if(params.color) {
+			if(params.color != null) {
 				_setColor(params.color);
 			}
-			if(params.opacity) {
-				_setOpacity(params.opacity);
+			if(params.background != null) {
+				_setBackground(params.background);
 			}
 			return that;
 		}
@@ -135,13 +143,13 @@ $COMPONENTFRAMEWORK.component = (function() {
 			if(typeof color === 'string') {
 				_setColor(color);
 			} else {
-				throw new Error("component :: setColor :: Not valid color.");
+				console.error("component :: setColor :: Not valid color.");
 			}
 		};
 
 		that.setOpacity = function(opacity) {
 			if(opacity != null && typeof opacity === 'number') {
-				_setOpacity(value);
+				_setOpacity(opacity);
 			}
 		};
 
@@ -151,6 +159,12 @@ $COMPONENTFRAMEWORK.component = (function() {
 
 		that.hide = function() {
 			_htmlElement.classList.add("hide");
+		};
+
+		that.setBackground = function(backgroundUrl) {
+			if(backgroundUrl != null) {
+				_setBackground(backgroundUrl);
+			}
 		};
 
 		that.destroy = function() {
@@ -172,7 +186,7 @@ $COMPONENTFRAMEWORK.component = (function() {
 			}
 			return undefined;
 		};
-		//RETURN PUBLICK OBJECT
+		//RETURN PUBLIC OBJECT
 		return that;
 	}
 }());
