@@ -5,8 +5,15 @@ $COMPONENTFRAMEWORK.textArea = (function() {
 		var _name = 'textArea',
 			_htmlElement,
 			_parentObj = $COMPONENTFRAMEWORK.textComponent(params),
-			that = Object.create(_parentObj),
-			_lastLineRegEx = new RegExp('.*<BR/>$', 'g');
+			that = Object.create(_parentObj);
+
+
+		function _removeLine (){
+			var node = _htmlElement.lastChild;
+			if(node.classList.contains('line')) {
+				_htmlElement.removeChild(node);
+			}
+		}
 
 		function _init(params) {
 			if(params) {
@@ -29,30 +36,33 @@ $COMPONENTFRAMEWORK.textArea = (function() {
 
 		that.writeLine = function(text) {
 			if(text != null) {
-				_htmlElement.innerHTML = _htmlElement.innerHTML + text + '<br/>';
+				var line = document.createElement('div');
+				line.classList.add('line');
+				line.innerHTML = text;
+				_htmlElement.appendChild(line);
 			}
 		};
-		that.removeLine = function() {
-			var exist =_lastLineRegEx.test(_htmlElement.innerHTML);
 
-			debugger;
-			var tmpContent = _htmlElement.innerHTML.replace(_lastLineRegEx, "");
-			_htmlElement.innerHTML = tmpContent;
+		that.removeLine = function() {
+			_removeLine();
 		};
+
 		that.clearText = function() {
-			that.removeText();
+			_htmlElement.childNodes.forEach(function(){
+				debugger;
+			});
 		};
+
 		that.destroy = function() {
 			for(var prop in this) {
 				delete this.prop;
 			}
 			_htmlElement = undefined;
 			that = undefined;
-			_lastLineRegEx = undefined;
 			_parentObj.destroy();
 			_parentObj = undefined;
 		};
-		//RETURN PUBLICK OBJECT
+		//RETURN PUBLIC OBJECT
 		return that;
 	}
 }());

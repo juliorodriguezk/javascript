@@ -5,7 +5,7 @@ $COMPONENTFRAMEWORK.component = (function() {
 		var _name = 'component',
 			that = Object.create(null), //Initialize object to empty
 			_htmlElement,
-			_position,
+			_position = 'absolute',
 			_x = 0,
 			_y = 0,
 			_width = 0,
@@ -17,7 +17,9 @@ $COMPONENTFRAMEWORK.component = (function() {
 
 		//START PRIVATE FUNCTIONS
 		function _setPosition(value) {
-			_position = value;
+			if(value != null) {
+				_position = value;
+			}
 			_htmlElement.style.position = _position;
 		}
 
@@ -83,6 +85,7 @@ $COMPONENTFRAMEWORK.component = (function() {
 			_setY(params.y);
 			_setWidth(params.width);
 			_setHeight(params.height);
+			_setPosition(params.position);
 			if(params.opacity != null) {
 				_setOpacity(params.opacity);
 			}

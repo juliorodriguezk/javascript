@@ -1,13 +1,23 @@
 var $COMPONENTFRAMEWORK = $COMPONENTFRAMEWORK || {};
-$COMPONENTFRAMEWORK.yellowBall = (function() {
+$COMPONENTFRAMEWORK.ball = (function() {
 	return function(params) {
 		'use strict';
+		if(params) {
+			//Remove width and height params for avoid set wrong size in component
+			delete params.width;
+			delete params.height;
+		}
 		var _htmlElement = params.element,
 			_parentObj = $COMPONENTFRAMEWORK.textComponent(params),
 			that = Object.create(_parentObj), //Initialize object to empty
-			_name = 'yellowBall';
+			_name = 'ball';
 
 		//START PRIVATE FUNCTIONS
+		function _setSize(size, units) {
+			if(size != null && typeof size === 'number') {
+				_parentObj.setSize(size, size, units);
+			}
+		}
 
 		function _init(params) {
 			if(params) {
@@ -15,6 +25,7 @@ $COMPONENTFRAMEWORK.yellowBall = (function() {
 					_htmlElement = params.element;
 				}
 				_htmlElement.classList.add("ball");
+				_setSize(params.size);
 			}
 		}
 
@@ -25,6 +36,10 @@ $COMPONENTFRAMEWORK.yellowBall = (function() {
 
 		that.getName = function() {
 			return _name;
+		};
+
+		that.setSize = function(size, units) {
+			_setSize(size, units);
 		};
 
 		that.destroy = function() {

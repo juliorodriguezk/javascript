@@ -29,13 +29,17 @@ function testFramework() {
 //	}, 100);
 	var myYellowBall = $COMPONENTFRAMEWORK.log({
 		element : document.getElementById("test"),
-		width : 100,
-		height : 100,
-		text : "hola"
+		width : 1000,
+		height : 200,
+		text : "hola",
+		fontSize : 10,
+		center : true,
+		size : 500
 	});
+	myYellowBall.error("ESTA LA BORRO QUE NO APAREZCA");
 	myYellowBall.log("ESTA ES LA PRIMERA FRASE QUE QUIERO METER");
 	myYellowBall.warn("ESTA ES LA segunda FRASE QUE QUIERO METER");
 	myYellowBall.error("ESTA ES LA tercera FRASE QUE QUIERO METER");
 	myYellowBall.error("ESTA LA BORRO QUE NO APAREZCA");
-	myYellowBall.removeLine();
-}
+	myYellowBall.clearText();
+ }
