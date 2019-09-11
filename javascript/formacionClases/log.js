@@ -13,7 +13,7 @@ $COMPONENTFRAMEWORK.log = (function() {
 		//PRIVATE IMPLEMENTATIONS
 
 		function _setDecorator(value) {
-			var currentDate = Date.now(),
+			var currentDate = new Date,
 				hour = currentDate.getHours(),
 				minutes = currentDate.getMinutes(),
 				lineNumber = _numberOfLines + 1;

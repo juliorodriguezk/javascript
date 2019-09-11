@@ -8,7 +8,7 @@ $COMPONENTFRAMEWORK.textArea = (function() {
 			that = Object.create(_parentObj);
 
 
-		function _removeLine (){
+		function _removeLine() {
 			var node = _htmlElement.lastChild;
 			if(node.classList.contains('line')) {
 				_htmlElement.removeChild(node);
@@ -48,8 +48,10 @@ $COMPONENTFRAMEWORK.textArea = (function() {
 		};
 
 		that.clearText = function() {
-			_htmlElement.childNodes.forEach(function(){
-				debugger;
+			_htmlElement.childNodes.forEach(function(element) {
+				if(element.classList.contains('line')) {
+					element.parentNode.removeChild(element);
+				}
 			});
 		};
 
