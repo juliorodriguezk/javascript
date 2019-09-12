@@ -98,6 +98,10 @@ $COMPONENTFRAMEWORK.movableComponent = (function() {
 			return _name;
 		};
 
+		that.setStepSize = function(stepSize) {
+			_setStepSize(stepSize);
+		};
+
 		that.moveX = function(leftDirection) {
 			_moveX(leftDirection, true);
 		};

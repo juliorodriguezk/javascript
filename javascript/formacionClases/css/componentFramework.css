@@ -8,9 +8,10 @@ COMPONENT CLASSES
 /*
 TEXT COMPONENT CLASSES
 */
-.textComponent{
+.textComponent {
     overflow: hidden;
 }
+
 .textComponent div.center {
     text-align: center;
     top: 50%;
@@ -26,22 +27,45 @@ FOCUSABLE_COMPONENT CLASES
 }
 
 /**
-LOG CLASSES
- */
+* LOG CLASSES
+*/
+.log-component {
+    border: 1px solid lightgrey;
+}
+
+.log-component .line {
+    padding: 2.5px 5px;
+}
+
 .error {
     font-weight: bold;
     color: red;
 }
 
 .warn {
-    color: yellow;
+    color: #ff9403;
 }
 
 .emphasis {
     font-weight: bold;
 }
 
-.log-console {
+/*
+BUTTON CLASES
+*/
+
+.button {
+    cursor: pointer;
+    border: 1px solid lightgrey;
+}
+
+.button div{
+    font-weight: bold;
+}
+
+.button.focused {
+    font-weight: bolder;
+    border: 1px solid black;
 }
 
 /*

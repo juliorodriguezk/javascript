@@ -48,11 +48,16 @@ $COMPONENTFRAMEWORK.textArea = (function() {
 		};
 
 		that.clearText = function() {
+			var elementsToRemove = [];
 			_htmlElement.childNodes.forEach(function(element) {
 				if(element.classList.contains('line')) {
-					element.parentNode.removeChild(element);
+					elementsToRemove.push(element);
 				}
 			});
+
+			while(elementsToRemove.length) {
+				_htmlElement.removeChild(elementsToRemove.pop());
+			}
 		};
 
 		that.destroy = function() {

@@ -21,9 +21,8 @@ $COMPONENTFRAMEWORK.executableComponent = (function() {
 				if(params.element) {
 					_htmlElement = params.element
 				}
-
 				if(params.executeAction) {
-					_setExecutableAction(params.executeAction);
+					_setExecutableAction(params.executeAction, params.bindExecutionToComponent);
 				}
 			}
 		}
@@ -37,8 +36,13 @@ $COMPONENTFRAMEWORK.executableComponent = (function() {
 			return _name;
 		};
 
+		that.setExecutableAction = function(action) {
+			_setExecutableAction(action);
+		};
 		that.execute = function() {
-			return _executableAction();
+			if(_executableAction) {
+				return _executableAction();
+			}
 		};
 
 		//RETURN PUBLICK OBJECT

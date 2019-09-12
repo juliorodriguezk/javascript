@@ -27,14 +27,14 @@ $COMPONENTFRAMEWORK.focusableComponent = (function() {
 
 		function _focus() {
 			_focused = true;
-			return _onFocusAction();
 			_htmlElement.classList.add("focused");
+			return _onFocusAction();
 		}
 
 		function _blur() {
 			_focused = false;
-			return _onBlurAction();
 			_htmlElement.classList.remove("focused");
+			return _onBlurAction();
 		}
 
 		function _init(params) {

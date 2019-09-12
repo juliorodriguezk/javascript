@@ -6,9 +6,11 @@ $COMPONENTFRAMEWORK.ball = (function() {
 			//Remove width and height params for avoid set wrong size in component
 			delete params.width;
 			delete params.height;
+			// If text available it should be centered
+			params.center = true;
 		}
 		var _htmlElement = params.element,
-			_parentObj = $COMPONENTFRAMEWORK.textComponent(params),
+			_parentObj = $COMPONENTFRAMEWORK.movableComponent(params),
 			that = Object.create(_parentObj), //Initialize object to empty
 			_name = 'ball';
 

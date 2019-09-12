@@ -2,23 +2,31 @@ var $COMPONENTFRAMEWORK = $COMPONENTFRAMEWORK || {};
 $COMPONENTFRAMEWORK.log = (function() {
 	return function(params) {
 		'use strict';
+
 		var _name = 'log',
 			_htmlElement,
 			_parentObj = $COMPONENTFRAMEWORK.textArea(params),
 			that = Object.create(_parentObj),
 			_logDecorator = "",
-			_AVAILABLE_DECORATORS = ['date', 'name', 'index', 'hour', 'nameDate', 'indexDateName', 'indexName', 'indexDate', 'nameHour', 'indexHourName', 'indexHour', 'nameDateHour', 'indexDateHourName', 'indexDateHour'],
+			_AVAILABLE_DECORATORS = ['date', 'name', 'index', 'hour', 'seconds', 'nameDate', 'indexNameDate',
+				'indexName', 'indexDate', 'nameHour', 'indexNameHour', 'indexHour', 'nameDateHour', 'indexDateHour',
+				'indexNameDateHour', 'nameSeconds', 'indexNameSeconds', 'indexSeconds', 'nameDateSeconds',
+				'indexDateSeconds', 'indexNameDateSeconds'],
+			_LINE_NUMBER_EXP = "{{ _numberOfLines }}",
+			_HOURS_EXP = "{{ hours }}",
+			_MINUTES_EXP = "{{ minutes }}",
+			_SECONDS_EXP = "{{ seconds }}",
+			_DATE_EXP = "{{ currentDate }}",
 			_numberOfLines = 0;
 
 		//PRIVATE IMPLEMENTATIONS
 
 		function _setDecorator(value) {
-			var currentDate = new Date,
-				hour = currentDate.getHours(),
-				minutes = currentDate.getMinutes(),
-				lineNumber = _numberOfLines + 1;
-
-			currentDate = currentDate.toDateString();
+			var currentDate = _DATE_EXP,
+				hour = _HOURS_EXP,
+				minutes = _MINUTES_EXP,
+				seconds = _SECONDS_EXP,
+				lineNumber = _LINE_NUMBER_EXP;
 
 			switch(value) {
 				case _AVAILABLE_DECORATORS[0]:
@@ -31,40 +39,82 @@ $COMPONENTFRAMEWORK.log = (function() {
 					_logDecorator = lineNumber + " :: ";
 					break;
 				case _AVAILABLE_DECORATORS[3]:
-					_logDecorator = lineNumber + " :: ";
+					_logDecorator = hour + ":" + minutes + " :: ";
 					break;
 				case _AVAILABLE_DECORATORS[4]:
+					_logDecorator = hour + ":" + minutes + ":" + seconds + " :: ";
+					break;
+				case _AVAILABLE_DECORATORS[5]: //'nameDate'
 					_logDecorator = _name + " :: " + currentDate + " :: ";
 					break;
-				case _AVAILABLE_DECORATORS[5]:
+				case _AVAILABLE_DECORATORS[6]://'indexNameDate'
 					_logDecorator = lineNumber + " :: " + _name + " :: " + currentDate + " :: ";
 					break;
-				case _AVAILABLE_DECORATORS[6]:
+				case _AVAILABLE_DECORATORS[7]://'indexName'
 					_logDecorator = lineNumber + " :: " + _name + " :: ";
 					break;
-				case _AVAILABLE_DECORATORS[7]:
+				case _AVAILABLE_DECORATORS[8]://'indexDate'
 					_logDecorator = lineNumber + " :: " + currentDate + " :: ";
 					break;
-				case _AVAILABLE_DECORATORS[8]:
-					_logDecorator = _name + " :: " + currentDate + " :: ";
+				case _AVAILABLE_DECORATORS[9]://'nameHour'
+					_logDecorator = _name + " :: " + hour + ":" + minutes + " :: ";
 					break;
-				case _AVAILABLE_DECORATORS[9]:
+				case _AVAILABLE_DECORATORS[10]://'indexNameHour'
 					_logDecorator = lineNumber + " :: " + _name + " :: " + hour + ":" + minutes + " :: ";
 					break;
-				case _AVAILABLE_DECORATORS[10]:
+				case _AVAILABLE_DECORATORS[11]://'indexHour'
 					_logDecorator = lineNumber + " :: " + hour + ":" + minutes + " :: ";
 					break;
-				case _AVAILABLE_DECORATORS[11]:
-					_logDecorator = lineNumber + " :: " + _name + " :: " + currentDate + " :: " + hour + ":" + minutes + " :: ";
-					break;
-				case _AVAILABLE_DECORATORS[12]:
-					_logDecorator = lineNumber + " :: " + currentDate + " :: " + hour + ":" + minutes + " :: ";
-					break;
-				case _AVAILABLE_DECORATORS[13]:
+				case _AVAILABLE_DECORATORS[12]://'nameDateHour'
 					_logDecorator = _name + " :: " + currentDate + " :: " + hour + ":" + minutes + " :: ";
 					break;
+				case _AVAILABLE_DECORATORS[13]://'indexDateHour'
+					_logDecorator = lineNumber + " :: " + currentDate + " :: " + hour + ":" + minutes + " :: ";
+					break;
+				case _AVAILABLE_DECORATORS[14]://'indexNameDateHour'
+					_logDecorator = lineNumber + " :: " + _name + " :: " + currentDate + " :: " + hour + ":" + minutes +
+						" :: ";
+					break;
+
+				case _AVAILABLE_DECORATORS[15]://'nameSeconds'
+					_logDecorator = _name + " :: " + hour + ":" + minutes + ":" + seconds + " :: ";
+					break;
+				case _AVAILABLE_DECORATORS[16]://'indexNameSeconds'
+					_logDecorator = lineNumber + " :: " + _name + " :: " + hour + ":" + minutes + ":" + seconds + " :: ";
+					break;
+				case _AVAILABLE_DECORATORS[17]://'indexSeconds'
+					_logDecorator = lineNumber + " :: " + hour + ":" + minutes + ":" + seconds + " :: ";
+					break;
+				case _AVAILABLE_DECORATORS[18]://'nameDateSeconds'
+					_logDecorator = _name + " :: " + currentDate + " :: " + hour + ":" + minutes + ":" + seconds + " :: ";
+					break;
+				case _AVAILABLE_DECORATORS[19]://'indexDateSeconds'
+					_logDecorator = lineNumber + " :: " + currentDate + " :: " + hour + ":" + minutes + ":" + seconds + " :: ";
+					break;
+				case _AVAILABLE_DECORATORS[20]://'indexNameDateSeconds'
+					_logDecorator = lineNumber + " :: " + _name + " :: " + currentDate + " :: " + hour + ":" + minutes +
+						":" + seconds + " :: ";
+					break;
+
 			}
 
+		}
+
+		function _createLogTxt(text) {
+			decoratorText = _logDecorator;
+			if(decoratorText !== "") {
+				var decoratorText = _logDecorator,
+					currentDate = new Date,
+					hour = currentDate.getHours(),
+					minutes = currentDate.getMinutes(),
+					seconds = currentDate.getSeconds();
+				decoratorText = decoratorText.replace(_DATE_EXP, currentDate.toDateString());
+				decoratorText = decoratorText.replace(_HOURS_EXP, hour);
+				decoratorText = decoratorText.replace(_MINUTES_EXP, minutes);
+				decoratorText = decoratorText.replace(_SECONDS_EXP, seconds);
+				decoratorText = decoratorText.replace(_LINE_NUMBER_EXP, _numberOfLines);
+			}
+			return decoratorText + text;
 		}
 
 		function _writeLog(htmlText, textClass) {
@@ -72,18 +122,15 @@ $COMPONENTFRAMEWORK.log = (function() {
 			if(textClass) {
 				txt = '<span class = "' + textClass + '">' + txt + '</span>';
 			}
-			if(_logDecorator !== "") {
-				txt = _logDecorator + txt;
-			}
-			_parentObj.writeLine(txt);
 			_numberOfLines += 1;
+			_parentObj.writeLine(_createLogTxt(txt));
 		}
 
 		function _init(params) {
 			if(params) {
 				if(params.element) {
 					_htmlElement = params.element;
-					_htmlElement.classList.add("log-console");
+					_htmlElement.classList.add("log-component");
 				}
 				_setDecorator(params.logDecorator);
 			}
