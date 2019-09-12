@@ -33,29 +33,55 @@ function testFramework() {
 		}
 	});
 
-	//enfoco el botón1 a los  5 segundos y compruebo poniendo en la consola el estado del foco de los 2 botones
+	// //enfoco el botón1 a los  5 segundos y compruebo poniendo en la consola el estado del foco de los 2 botones
+	// setTimeout(function() {
+	// 	myButton.focus();
+	// 	console.log("A los 5 segundos :: ¿Tiene el foco el botón 1?" + myButton.isFocused());
+	// 	console.log("A los 5 segundos :: ¿Tiene el foco el botón 2?" + myButton2.isFocused());
+	// }, 5000);
+	//
+	// //desenfoco el botón1 y enfoco el botón2 a los  10 segundos y compruebo poniendo en la consola el estado del foco de los 2 botones
+	// setTimeout(function() {
+	// 	myButton.blur();
+	// 	myButton2.focus();
+	// 	console.log("A los 10 segundos :: ¿Tiene el foco el botón 1?" + myButton.isFocused());
+	// 	console.log("A los 10 segundos :: ¿Tiene el foco el botón 2?" + myButton2.isFocused());
+	// }, 10000);
+	// //desenfoco el botón 2 a los 15 segundos
+	//
+	// setTimeout(function() {
+	// 	myButton2.blur();
+	// 	console.log("A los 15 segundos :: ¿Tiene el foco el botón 1?" + myButton.isFocused());
+	// 	console.log("A los 15 segundos :: ¿Tiene el foco el botón 2?" + myButton2.isFocused());
+	// }, 15000);
+
+	//Hacemos uso del bind para cambiar el color en el focus y el blur del botón
+
+	var focusFunction = function() {
+		this.setColor("blue");
+	};
+
+	focusFunction = focusFunction.bind(myButton);
+	//Versión con this
+	var blurFunction = function() {
+		this.setColor("lightblue");
+	};
+	blurFunction = blurFunction.bind(myButton);
+
+	myButton.setBlurAction(blurFunction);
+	myButton.setFocusAction(focusFunction);
+	//A los 5 segundos le damos el foco
 	setTimeout(function() {
 		myButton.focus();
 		console.log("A los 5 segundos :: ¿Tiene el foco el botón 1?" + myButton.isFocused());
-		console.log("A los 5 segundos :: ¿Tiene el foco el botón 2?" + myButton2.isFocused());
 	}, 5000);
+	//A los 10 segundos le quitamos el foco
 
-	//desenfoco el botón1 y enfoco el botón2 a los  10 segundos y compruebo poniendo en la consola el estado del foco de los 2 botones
 	setTimeout(function() {
 		myButton.blur();
-		myButton2.focus();
 		console.log("A los 10 segundos :: ¿Tiene el foco el botón 1?" + myButton.isFocused());
-		console.log("A los 10 segundos :: ¿Tiene el foco el botón 2?" + myButton2.isFocused());
 	}, 10000);
-	//desenfoco el botón 2 a los 15 segundos
 
-	setTimeout(function() {
-		myButton2.blur();
-		console.log("A los 15 segundos :: ¿Tiene el foco el botón 1?" + myButton.isFocused());
-		console.log("A los 15 segundos :: ¿Tiene el foco el botón 2?" + myButton2.isFocused());
-	}, 15000);
-
-	myButton.focus();
 	/*
 	* EJEMPLO DE UN COMPONENTE TIPO BALL
 	*
