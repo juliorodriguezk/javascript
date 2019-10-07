@@ -1,0 +1,19 @@
+.hide {
+    display: none;
+}
+
+.error {
+    font-weight: bold;
+    color: red;
+}
+
+.warn {
+    color: yellow;
+}
+
+.emphasis {
+    font-weight: bold;
+}
+
+.log-console {
+}
