@@ -78,5 +78,17 @@ Si declaramos una constante y le asignamos un valor objeto los valores del objet
     
     import {valor} as miLib from "lib/miLibreria"
     diParametro(miLib.miValor); // "pasa un parámetro válido"
+    
+## Cors arreglo servidor
+    const headers = new Headers();
+    Headers.set('Access-Control-Allow-Origin', '*'');
+    return new Response ('ok', {headers, status:200})
+
+    Express manualmente
+    res.writeHead(200, {'Access-Control-Allow-Origin': '*''})
 
 
+    Exppress middleware
+    import cors from 'cors';
+    const app = express();
+    app.use(cors());
